@@ -27,7 +27,7 @@ pub async fn execute(args: ServerInstallArgs) -> Result<()> {
     print_fancy_header();
 
     let multi = MultiProgress::new();
-    check_java(&multi);
+    // check_java(&multi);
     print_success_message();
 
     Ok(())
@@ -124,35 +124,35 @@ fn custom_color(rgb: (u8, u8, u8)) -> console::Color {
     console::Color::Color256(16 + 36 * (rgb.0 / 51) + 6 * (rgb.1 / 51) + (rgb.2 / 51))
 }
 
-fn check_java(multi: &MultiProgress) -> Result<()> {
-    let pb = create_spinner(multi, "Checking Java installation...");
-    let output = Command::new("java")
-        .arg("-version")
-        .output();
-
-    match output {
-        Ok(output) => {
-            let version_str = String::from_utf8_lossy(&output.stdout).trim();
-            let version_str = version_str.split(" ").nth(1).unwrap();
-            let version = version_str.parse::<i32>()?;
-
-            if version >= 24 {
-                pb.finish_and_clear();
-                println!("{} Java {} detected", style("✔").green(), version);
-                Ok(())
-            } else {
-                pb.finish_and_clear();
-                println!("{} Java {} detected (requires Java 24+)", style("❌").red(), version);
-                anyhow::bail!("Java 24 or higher is required. Please install Java first.")
-            }
-        }
-        Err(_) => {
-            pb.finish_and_clear();
-            println!("{} Java is not installed", style("❌").red());
-            anyhow::bail!("Java 24 or higher is required. Please install Java first.")
-        }
-    }
-}
+// fn check_java(multi: &MultiProgress) -> Result<()> {
+//     let pb = create_spinner(multi, "Checking Java installation...");
+//     let output = Command::new("java")
+//         .arg("-version")
+//         .output();
+//
+//     match output {
+//         Ok(output) => {
+//             let version_str = String::from_utf8_lossy(&output.stdout).trim();
+//             let version_str = version_str.split(" ").nth(1).unwrap();
+//             let version = version_str.parse::<i32>()?;
+//
+//             if version >= 24 {
+//                 pb.finish_and_clear();
+//                 println!("{} Java {} detected", style("✔").green(), version);
+//                 Ok(())
+//             } else {
+//                 pb.finish_and_clear();
+//                 println!("{} Java {} detected (requires Java 24+)", style("❌").red(), version);
+//                 anyhow::bail!("Java 24 or higher is required. Please install Java first.")
+//             }
+//         }
+//         Err(_) => {
+//             pb.finish_and_clear();
+//             println!("{} Java is not installed", style("❌").red());
+//             anyhow::bail!("Java 24 or higher is required. Please install Java first.")
+//         }
+//     }
+// }
 
 fn create_spinner(multi: &MultiProgress, message: &str) -> ProgressBar {
     let pb = multi.add(ProgressBar::new_spinner());
