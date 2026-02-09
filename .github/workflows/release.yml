@@ -68,7 +68,7 @@ jobs:
         run: |
           mkdir -p dist
           ls -la target/${{ matrix.target }}/release/
-          cp target/${{ matrix.target }}/release/${{ matrix.name }} dist/${{ matrix.name }}
+          cp target/${{ matrix.target }}/release/kuken-cli dist/${{ matrix.name }}
           chmod +x dist/${{ matrix.name }}
 
       - name: Prepare binary (Windows)
