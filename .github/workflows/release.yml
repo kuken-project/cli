@@ -45,12 +45,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
 
-      - name: Install cross-compilation tools (Linux ARM64)
-        if: matrix.target == 'aarch64-unknown-linux-gnu'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y gcc-aarch64-linux-gnu
-
       - name: Cache
         uses: actions/cache@v4
         with:
@@ -60,22 +54,20 @@ jobs:
             target
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
-      - name: Build release binary
+      - name: Build release artifact
         run: cargo build --release --target ${{ matrix.target }}
 
       - name: Prepare binary (Unix)
         if: matrix.os != 'windows-latest'
         run: |
           mkdir -p dist
-          ls -la target/${{ matrix.target }}/release/
           cp target/${{ matrix.target }}/release/kuken-cli dist/${{ matrix.name }}
           chmod +x dist/${{ matrix.name }}
 
-      - name: Prepare binary (Windows)
+      - name: Prepare executable (Windows)
         if: matrix.os == 'windows-latest'
         run: |
           mkdir dist
-          ls -la target/${{ matrix.target }}/release/
           mv target/${{ matrix.target }}/release/kuken-cli.exe dist/${{ matrix.name }}
 
       - name: Upload artifacts
