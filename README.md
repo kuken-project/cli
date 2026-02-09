@@ -1,12 +1,6 @@
 # cli
 
-> [!CAUTION]
-> - Always download from official [GitHub Releases](https://github.com/kuken-project/cli/releases)
-> - Verify checksums for security (SHA256 available in releases)
-
-Download the latest release for your platform from [GitHub Releases](https://github.com/kuken-project/cli/releases).
-
-## Manual Installation
+## Installation
 
 ### Linux and macOS
 
@@ -18,20 +12,6 @@ curl -fsSL https://kuken.io/binaries/cli/install.sh | bash
 
 ```powershell
 irm https://kuken.io/binaries/cli/install.ps1 | iex
-```
-
-## Uninstallation
-
-### Linux / macOS
-
-```bash
-sudo rm $HOME/.local/bin/kuken
-```
-
-### Windows
-
-```powershell
-Remove-Item "$HOME\AppData\Local\Kuken\kuken-cli.exe"
 ```
 
 ## Getting Started
@@ -70,4 +50,18 @@ $env:Path
 Run:
 ```bash
 xattr -d com.apple.quarantine /usr/.local/bin/kuken
+```
+
+## Uninstallation
+
+### Linux / macOS
+
+```bash
+sudo rm $HOME/.local/bin/kuken
+```
+
+### Windows
+
+```powershell
+Remove-Item "$HOME\AppData\Local\Kuken\kuken-cli.exe"
 ```
