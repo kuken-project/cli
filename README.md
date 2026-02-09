@@ -11,13 +11,13 @@ Download the latest release for your platform from [GitHub Releases](https://git
 ### Linux and macOS
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/kuken-project/cli/main/install.sh | bash
+curl -fsSL https://kuken.io/binaries/cli/install.sh | bash
 ```
 
 ### Windows
 
 ```powershell
-irm https://github.com/kuken-project/cli/releases/latest/download/install.ps1 | iex
+irm https://kuken.io/binaries/cli/install.ps1 | iex
 ```
 
 ## Uninstallation
@@ -35,12 +35,6 @@ Remove-Item "$HOME\AppData\Local\Kuken\kuken-cli.exe"
 ```
 
 ## Getting Started
-
-After installation, initialize your Kuken configuration:
-
-```bash
-kuken init
-```
 
 For available commands:
 
