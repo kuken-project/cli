@@ -1,17 +1,17 @@
 # cli
 
 > [!CAUTION]
-> - Always download from official [GitHub Releases](https://github.com/devnatan/kuken/releases)
+> - Always download from official [GitHub Releases](https://github.com/kuken-project/cli/releases)
 > - Verify checksums for security (SHA256 available in releases)
 
-Download the latest release for your platform from [GitHub Releases](https://github.com/devnatan/kuken/releases).
+Download the latest release for your platform from [GitHub Releases](https://github.com/kuken-project/cli/releases).
 
 ## Manual Installation
 
 ### Linux
 
 ```bash
-curl -LO https://github.com/devnatan/kuken/releases/download/v0.1.0/kuken-linux-amd64
+curl -LO https://github.com/kuken-project/cli/releases/download/v0.1.0/kuken-linux-amd64
 chmod +x kuken-linux-amd64
 sudo mv kuken-linux-amd64 /usr/local/bin/kuken
 kuken --version
@@ -20,7 +20,7 @@ kuken --version
 ### macOS
 
 ```bash
-curl -LO https://github.com/devnatan/kuken/releases/download/v0.1.0/kuken-darwin-arm64
+curl -LO https://github.com/kuken-project/cli/releases/download/v0.1.0/kuken-darwin-arm64
 
 chmod +x kuken-darwin-arm64
 sudo mv kuken-darwin-arm64 /usr/local/bin/kuken
@@ -30,7 +30,7 @@ kuken --version
 ### Windows
 
 ```powershell
-Invoke-WebRequest -Uri "https://github.com/devnatan/kuken/releases/download/v0.1.0/kuken-windows.exe" -OutFile "kuken.exe"
+Invoke-WebRequest -Uri "https://github.com/kuken-project/cli/releases/download/v0.1.0/kuken-windows.exe" -OutFile "kuken.exe"
 Move-Item kuken.exe "C:\Program Files\Kuken\kuken.exe"
 [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files\Kuken", "Machine")
 
