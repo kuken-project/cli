@@ -8,34 +8,16 @@ Download the latest release for your platform from [GitHub Releases](https://git
 
 ## Manual Installation
 
-### Linux
+### Linux and macOS
 
 ```bash
-curl -LO https://github.com/kuken-project/cli/releases/download/v0.1.0/kuken-linux-amd64
-chmod +x kuken-linux-amd64
-sudo mv kuken-linux-amd64 /usr/local/bin/kuken
-kuken --version
-```
-
-### macOS
-
-```bash
-curl -LO https://github.com/kuken-project/cli/releases/download/v0.1.0/kuken-darwin-arm64
-
-chmod +x kuken-darwin-arm64
-sudo mv kuken-darwin-arm64 /usr/local/bin/kuken
-kuken --version
+curl -fsSL https://raw.githubusercontent.com/kuken-project/cli/main/install.sh | bash
 ```
 
 ### Windows
 
 ```powershell
-Invoke-WebRequest -Uri "https://github.com/kuken-project/cli/releases/download/v0.1.0/kuken-windows.exe" -OutFile "kuken.exe"
-Move-Item kuken.exe "C:\Program Files\Kuken\kuken.exe"
-[Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files\Kuken", "Machine")
-
-# Verify installation (restart PowerShell first)
-kuken --version
+irm https://github.com/kuken-project/cli/releases/latest/download/install.ps1 | iex
 ```
 
 ## Uninstallation
@@ -43,13 +25,13 @@ kuken --version
 ### Linux / macOS
 
 ```bash
-sudo rm /usr/local/bin/kuken
+sudo rm $HOME/.local/bin/kuken
 ```
 
 ### Windows
 
 ```powershell
-Remove-Item "C:\Program Files\Kuken\kuken.exe"
+Remove-Item "$HOME\AppData\Local\Kuken\kuken-cli.exe"
 ```
 
 ## Getting Started
@@ -93,5 +75,5 @@ $env:Path
 
 Run:
 ```bash
-xattr -d com.apple.quarantine /usr/local/bin/kuken
+xattr -d com.apple.quarantine /usr/.local/bin/kuken
 ```
