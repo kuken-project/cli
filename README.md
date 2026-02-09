@@ -2,15 +2,15 @@
 
 ## Installation
 
-### Linux and macOS
+#### Linux and macOS
 
 ```bash
 curl -fsSL https://kuken.io/binaries/cli/install.sh | bash
 ```
 
-### Windows
+#### Windows
 
-```powershell
+```bash
 irm https://kuken.io/binaries/cli/install.ps1 | iex
 ```
 
