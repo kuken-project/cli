@@ -61,7 +61,7 @@ jobs:
         if: matrix.target != 'x86_64-pc-windows-msvc'
         run: |
           mkdir -p dist
-          cp target/${{ matrix.target }}/release/kuken-cli dist/${{ matrix.name }}
+          cp target/${{ matrix.target }}/release/kuken dist/${{ matrix.name }}
           chmod +x dist/${{ matrix.name }}
 
       - name: Prepare executable (Windows)
