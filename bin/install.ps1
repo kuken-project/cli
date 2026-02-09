@@ -2,7 +2,7 @@ $ErrorActionPreference = 'Stop'
 
 $repo = "kuken-project/cli"
 $installDir = "$env:LOCALAPPDATA\Kuken"
-$binPath = "$installDir\kuken-cli.exe"
+$binPath = "$installDir\kuken.exe"
 
 Write-Host "Installing Küken CLI..." -ForegroundColor Cyan
 
