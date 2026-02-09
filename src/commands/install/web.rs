@@ -345,7 +345,6 @@ async fn test_api_connection(api_url: &str, multi: &MultiProgress) {
     );
 
     let client = reqwest::Client::builder()
-        .danger_accept_invalid_certs(true)
         .timeout(Duration::from_secs(5))
         .build()
         .unwrap();
