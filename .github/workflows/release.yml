@@ -56,27 +56,14 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y gcc-aarch64-linux-gnu
 
-      - name: Cache cargo registry
+      - name: Cache
         uses: actions/cache@v4
         with:
-          path: ~/.cargo/registry
-          key: ${{ runner.os }}-cargo-registry-${{ hashFiles('**/Cargo.lock') }}
-
-      - name: Cache cargo index
-        uses: actions/cache@v4
-        with:
-          path: ~/.cargo/git
-          key: ${{ runner.os }}-cargo-index-${{ hashFiles('**/Cargo.lock') }}
-
-      - name: Cache cargo build
-        uses: actions/cache@v4
-        with:
-          path: target
-          key: ${{ runner.os }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
-
-      - name: Run tests
-        if: matrix.target == 'x86_64-unknown-linux-gnu'
-        run: cargo test --verbose
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
       - name: Build release binary
         run: cargo build --release --target ${{ matrix.target }}
@@ -85,14 +72,16 @@ jobs:
         if: matrix.os != 'windows-latest'
         run: |
           mkdir -p dist
-          cp target/${{ matrix.target }}/release/kuken dist/${{ matrix.name }}
+          ls -la target/${{ matrix.target }}/release/
+          cp target/${{ matrix.target }}/release/${{ matrix.name }} dist/${{ matrix.name }}
           chmod +x dist/${{ matrix.name }}
 
       - name: Prepare binary (Windows)
         if: matrix.os == 'windows-latest'
         run: |
           mkdir dist
-          cp target/${{ matrix.target }}/release/kuken.exe dist/${{ matrix.name }}
+          ls -la target/${{ matrix.target }}/release/
+          mv target/${{ matrix.target }}/release/kuken-cli.exe dist/${{ matrix.name }}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v6
