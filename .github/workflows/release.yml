@@ -66,9 +66,11 @@ jobs:
 
       - name: Prepare executable (Windows)
         if: matrix.os == 'windows-latest'
+        shell: pwsh
         run: |
-          mkdir dist
-          mv target/${{ matrix.target }}/release/kuken-cli.exe dist/${{ matrix.name }}
+          New-Item -ItemType Directory -Force -Path dist
+          $binary = Get-ChildItem -Path "target/${{ matrix.target }}/release" -Filter "*.exe" | Where-Object { $_.Name -notlike "*-*" -or $_.Name -like "kuken*.exe" } | Select-Object -First 1
+          Copy-Item -Path $binary.FullName -Destination "dist/${{ matrix.name }}"
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v6
