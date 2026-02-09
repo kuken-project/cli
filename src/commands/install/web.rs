@@ -12,10 +12,6 @@ use std::time::Duration;
 
 #[derive(Args)]
 pub struct WebInstallArgs {
-    /// Install in development mode
-    #[arg(long)]
-    dev: bool,
-
     /// Küken API server URL
     #[arg(long, value_name = "URL")]
     api_url: Option<String>,
@@ -45,15 +41,9 @@ pub async fn execute(args: WebInstallArgs) -> Result<()> {
     check_docker()?;
     pb.finish_and_clear();
 
-    let mode = if args.dev {
-        "development"
-    } else {
-        "production"
-    };
-
     print_box(&format!(
         "Installing Web UI in {} mode",
-        style(mode).bold().fg(custom_color(KUKEN_ORANGE))
+        style("production").bold().fg(custom_color(KUKEN_ORANGE))
     ));
 
     let api_url = get_api_url(args.api_url).await?;
@@ -82,12 +72,7 @@ pub async fn execute(args: WebInstallArgs) -> Result<()> {
     pb.finish_and_clear();
     println!("{}  Configuration files created", style("✔").green());
 
-    let compose_file = if args.dev {
-        "docker-compose.dev.yml"
-    } else {
-        "docker-compose.prod.yml"
-    };
-    start_docker_compose(&install_dir, compose_file, &multi)?;
+    start_docker_compose(&install_dir, "docker-compose.yml", &multi)?;
 
     print_success_message();
 
